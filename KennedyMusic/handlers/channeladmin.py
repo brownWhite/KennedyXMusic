@@ -109,7 +109,7 @@ async def skip(_, message: Message):
     await message.reply_text(f"- Skipped **{skip[0]}**\n- Now playing **{qeue[0][0]}**")
 
     
-    @Client.on_message(filters.group & ~filters.edited & ~filters.me)
+@Client.on_message(filters.group & ~filters.edited & ~filters.me)
 async def admintool_handler(_, message: Message):
     if message.sender_chat:
         if (
