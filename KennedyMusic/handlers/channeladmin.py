@@ -107,3 +107,13 @@ async def skip(_, message: Message):
     if not qeue:
         return
     await message.reply_text(f"- Skipped **{skip[0]}**\n- Now playing **{qeue[0][0]}**")
+
+    
+    @Client.on_message(filters.group & ~filters.edited & ~filters.me)
+async def admintool_handler(_, message: Message):
+    if message.sender_chat:
+        if (
+            message.sender_chat.type == "supergroup"
+            or message.sender_chat.id == db_cache.get(f"linked{message.chat.id}", 0)
+        ):
+            raise ContinuePropagation
